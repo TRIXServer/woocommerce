@@ -18,6 +18,9 @@ class MobbexCheckout
 
     public $installments = [];
 
+    // Exclude "Pago en Efectivo" for Argentina
+    public $sources = ['naranja', 'visa', 'mastercard', 'amex', 'cabal', 'visa.debit', 'mastercard.debit', 'maestro', 'cabal.debit'];
+
     public $endpoints = [];
 
     /** Module configured options */
@@ -71,6 +74,7 @@ class MobbexCheckout
                 'items'        => $this->items,
                 'merchants'    => $this->merchants,
                 'installments' => $this->installments,
+                'sources'      => $this->sources,
                 'customer'     => array_merge($this->customer),
                 'addresses'    => $this->addresses,
                 'options'      => [
