@@ -76,6 +76,7 @@ class MobbexCheckout
                 'items'        => $this->items,
                 'merchants'    => $this->merchants,
                 'installments' => $this->installments,
+                'sources'      => $this->sources,
                 'customer'     => array_merge($this->customer),
                 'addresses'    => $this->addresses,
                 'webhooksType' => $this->webhooksType,
