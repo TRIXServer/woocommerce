@@ -8,6 +8,8 @@ class MobbexCheckout
 
     public $relation = 0;
 
+    public $webhooksType = 'all';
+
     public $customer = [];
 
     public $addresses = [];
@@ -74,9 +76,9 @@ class MobbexCheckout
                 'items'        => $this->items,
                 'merchants'    => $this->merchants,
                 'installments' => $this->installments,
-                'sources'      => $this->sources,
                 'customer'     => array_merge($this->customer),
                 'addresses'    => $this->addresses,
+                'webhooksType' => $this->webhooksType,
                 'options'      => [
                     'embed'    => $this->config->button == 'yes',
                     'domain'   => str_replace('www.', '', parse_url(home_url(), PHP_URL_HOST)),
@@ -132,6 +134,9 @@ class MobbexCheckout
         $reference = [
             'wc_id:' . $id,
         ];
+        // Add site id
+        if (!empty($this->settings['site_id']))
+            $reference[] = 'site_id:' . str_replace(' ', '-', trim($this->settings['site_id']));
 
         // Add reseller id
         if (!empty($this->config->reseller_id))
